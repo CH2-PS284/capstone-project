@@ -4,5 +4,5 @@ tensorFlow
 numpy
 Pillow
 dlib
-sklearn
 flask_mysqldb
+scikit-learn
