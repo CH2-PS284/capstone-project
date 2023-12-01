@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 import numpy as np
 import dlib
 import tensorflow as tf
-from flask_mysqldb import MySQL
+# from flask_mysqldb import MySQL
 from PIL import Image, ImageOps, ImageEnhance
 from flask import Flask, jsonify, request
 from auth import auth
@@ -19,7 +19,7 @@ app.config['MYSQL_PASSWORD'] = 'capstone'
 app.config['MYSQL_DB'] = 'capstone-db'
 # app.secret_key = 'your secret key'
 
-mysql = MySQL(app)
+# mysql = MySQL(app)
 predictor = tf.keras.models.load_model(app.config['MODEL_FILE'], compile=False, safe_mode=False)
 detector = dlib.get_frontal_face_detector()
 
@@ -122,17 +122,17 @@ def preprocessing():
         }),200
         else :
           vector_face = predict_face(face)
-          cur = mysql.connection.cursor()
-          cur.execute("SELECT * FROM UserDataModel")
-          data = cur.fetchall()
-          if_clf = load(data[0][1])
-          result = if_clf.predict(vector_face)
+          # cur = mysql.connection.cursor()
+          # cur.execute("SELECT * FROM UserDataModel")
+          # data = cur.fetchall()
+          # if_clf = load(data[0][1])
+          # result = if_clf.predict(vector_face)
           return jsonify({
             "status": {
                 "code": 200,
                 "message": "request success, face detected"
             },
-            "data": f"result,{result}"
+            "data": f"result,{vector_face}"
           }),200
       
       else:
