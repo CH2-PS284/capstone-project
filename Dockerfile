@@ -12,4 +12,4 @@ RUN apt-get update -y && apt-get install -y \
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "app.py"] 
+ENTRYPOINT [ "/usr/local/bin/gunicorn", "--config", "gunicorn.conf.py", "--log-config", "gunicorn-logging.conf", "hellomodule.app:app" ]
