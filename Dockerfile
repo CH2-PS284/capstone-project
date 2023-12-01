@@ -24,30 +24,17 @@ WORKDIR /usr/src/app
 COPY . ./
 
 # Install dependencies.
-RUN pip install -r requirements.txt
+
+
 
 # Copy local code to the container image.
 RUN apt-get update -y && apt-get install -y \
   build-essential cmake \
   && apt-get clean
-
-
-# Allow statements and log messages to immediately appear in the Cloud Run logs
-ENV PYTHONUNBUFFERED 1
-
-# Create and change to the app directory.
-WORKDIR /usr/src/app
-
-# Copy application dependency manifests to the container image.
-# Copying this separately prevents re-running pip install on every code change.
-COPY requirements.txt ./
-
-# Install dependencies.
+  
 RUN pip install -r requirements.txt
 
-# Copy local code to the container image.
-COPY . ./
-
+# Allow statements and log messages to immediately appear in the Cloud Run logs
 # Run the web service on container startup.
 # Use gunicorn webserver with one worker process and 8 threads.
 # For environments with multiple CPU cores, increase the number of workers

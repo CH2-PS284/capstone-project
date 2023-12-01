@@ -101,7 +101,7 @@ def index():
 
 
 @app.route("/verification", methods=["POST"])
-@auth.login_required()
+# @auth.login_required()
 def preprocessing():
     if request.method == "POST":
       image = request.files["img"]
@@ -152,5 +152,7 @@ def preprocessing():
         },
         "data": None
       })
-
+    
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
 
