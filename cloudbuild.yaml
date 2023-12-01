@@ -1,6 +1,6 @@
 steps: 
   - name: gcr.io/cloud-builders/docker
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/PPAP:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/ppap:$COMMIT_SHA', '.']
   - name: gcr.io/cloud-builders/docker
-    args: ['push', 'gcr.io/$PROJECT_ID/PPAP:$COMMIT_SHA']
+    args: ['push', 'gcr.io/$PROJECT_ID/ppap:$COMMIT_SHA']
 logsBucket: 'gs://bucket-db-capstone/logs'    
